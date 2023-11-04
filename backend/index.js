@@ -1,7 +1,10 @@
 
 const server = require('./src/server')
-const PORT = 3000
+const PORT = 3001
+const {database} = require('./db')
 
-server.listen(PORT, ()=>{
-    console.log(`el servidor corre en puerto, ${PORT}`)
+database.sync({force:true}).then(()=>{
+    server.listen(PORT, ()=>{
+        console.log(`el servidor corre en puerto, ${PORT}`)
+    }) 
 })

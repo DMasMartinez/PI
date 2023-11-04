@@ -8,4 +8,4 @@ router.use("/pokemons",pokehandler)
 
 
 
-module.exports = pokehandler;
+module.exports = router;
