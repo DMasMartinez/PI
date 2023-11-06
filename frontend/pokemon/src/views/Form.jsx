@@ -99,11 +99,11 @@ function Form(props){
     function handlerfavoritechange(event){
         if (isfav){
             setIsfav(!isfav)
-            dispatch(removefav(newpoke.name))
+            // dispatch(removefav(newpoke.name))
             
         }else{
             setIsfav(!isfav)
-            dispatch(addfav(newpoke))
+            // dispatch(addfav(newpoke))
         }
         //revisar esta parte no se como usar addfav
     }

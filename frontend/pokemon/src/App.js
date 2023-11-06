@@ -10,15 +10,22 @@ import Ordenar from './Components/Orderalfa';
 import { useEffect, useState } from 'react';
 import { Routes,Route } from 'react-router-dom';
 import Form from './views/Form';
+import PokemonList from './Components/PokemonList';
+import Showsearch from './views/Showsearch';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 function App() {
   const[users,setUsers] = useState([])
   const[usersname,setUsersname] = useState([])
+  const location = useLocation()
+  const navigate = useNavigate()
   function search(name){
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then(res=>res.json())
       .then(data=>setUsers([...users,data]))
+    navigate('/search')
   }
 
   function create_pokemon(name,weight,height,life,atack,defense,velocity,imagen){
@@ -55,6 +62,54 @@ function App() {
     const poketip = users.filter((user)=>user.types[0].type.name===tipo)
     setUsers(poketip)
   }
+///////////////////////////
+  const [pokemonlist,setPokemonlist] = useState([])
+  const [loading,setLoading] = useState(true)
+  const showpokemons = async() =>{
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40")
+    const data = await res.json()
+
+    const pokemones = data.results.map(async(pokemon)=>{
+        const res = await fetch(pokemon.url)
+        const data = res.json()
+        return data
+    })
+    const resultado = await Promise.all(pokemones)
+    setPokemonlist([...pokemonlist,...resultado])
+    setLoading(false)
+  }
+
+  function orderalfabetichome(users){
+    const alfabetic = "abcdefghijklmnopqrstuvwxyz"
+    var newlist = []
+    for (var i=0; i<=alfabetic.length;i++){
+      var aux = alfabetic[i]
+      for (var j=0;j<users.length;j++){
+        if (aux===users[j].name[0]){
+          newlist.push(users[j])
+        }
+      }
+    }
+    setPokemonlist(newlist)
+  }
+  function orderopositealfabetichome(users){
+    const alfabetic = "zyxwvutsrqponmlkjihgfedcba"
+    var newlist = []
+    for (var i=0; i<=alfabetic.length;i++){
+      var aux = alfabetic[i]
+      for (var j=0;j<users.length;j++){
+        if (aux===users[j].name[0]){
+          newlist.push(users[j])
+        }
+      }
+    }
+    setPokemonlist(newlist)
+  }
+  function poketypehome(users,tipo){
+    const poketip = users.filter((user)=>user.types[0].type.name===tipo)
+    setPokemonlist(poketip)
+  }
+
   useEffect(()=>{
     console.log("esto se ejecuta desde App")
   },[users])
@@ -62,12 +117,14 @@ function App() {
     <div className="App">
       {/* <Searchbar search = {search}/>
       <Pokecard users={users}/> */}
+      {location.pathname!=='/'&&location.pathname!=='/search'&&<Showsearch search={search} users={users} tipos={poketype} alfabetic={orderalfabetic} noalfabetic={orderopositealfabetic} orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>}
       <Routes>
-        <Route path='/home' element={<Home tipos = {poketype} noalfabetic = {orderopositealfabetic} alfabetic = {orderalfabetic} users={users} search={search}/>}/>
+        <Route path='/home' element={<Home orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>}/>
         <Route path='/' element={<Landing/>}/>
         <Route path='/favorites' element={<Favoritos/>}/>
         <Route path='/detail/:name' element={<Detail/>}/>
         <Route path='/create' element={<Form create_pokemon={create_pokemon}/>}/>
+        <Route path='/search' element={<Showsearch search={search} users={users} tipos={poketype} alfabetic={orderalfabetic} noalfabetic={orderopositealfabetic} orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>} />
       </Routes>
     </div>
   );
