@@ -3,15 +3,54 @@ import Pokecard from "../Components/Pokecard"
 import Ordenar from "../Components/Orderalfa"
 import Ordenar2 from "../Components/Orderalfa2"
 import { useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 function Showsearch(props){
     const location = useLocation()
     return(
         <div>
-            {location.pathname!=='/home'&&location.pathname!=='/favorites'?(<Ordenar tipos = {props.tipos} alfabetic={props.alfabetic} noalfabetic={props.noalfabetic}/>):(<Ordenar2 tipos = {props.tipohome} alfabetic={props.orderhome} noalfabetic={props.noorderhome} pokemonlist={props.pokemonlist}/>)}
-            {location.pathname!=='/favorites'&&<Searchbar search={props.search}/>}
-            {location.pathname!=='/home'&&location.pathname!=='/favorites'&&<Pokecard users={props.users}/>}
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <Link to='/'>
+            <h1>POKEMON</h1>
+        </Link>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></hr></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
         </div>
     )
 }
 
 export default Showsearch
+
+            // {location.pathname!=='/home'&&location.pathname!=='/favorites'?(<Ordenar tipos = {props.tipos} alfabetic={props.alfabetic} noalfabetic={props.noalfabetic}/>):(<Ordenar2 tipos = {props.tipohome} alfabetic={props.orderhome} noalfabetic={props.noorderhome} pokemonlist={props.pokemonlist}/>)}
+            // {location.pathname!=='/favorites'&&<Searchbar search={props.search}/>}
+            // {location.pathname!=='/home'&&location.pathname!=='/favorites'&&<Pokecard users={props.users}/>}

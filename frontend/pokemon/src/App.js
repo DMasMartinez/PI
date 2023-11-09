@@ -119,7 +119,7 @@ function App() {
       <Pokecard users={users}/> */}
       {location.pathname!=='/'&&location.pathname!=='/search'&&<Showsearch search={search} users={users} tipos={poketype} alfabetic={orderalfabetic} noalfabetic={orderopositealfabetic} orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>}
       <Routes>
-        <Route path='/home' element={<Home orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>}/>
+        <Route path='/home' element={<Home orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} setPokemonlist={setPokemonlist} loading = {loading}/>}/>
         <Route path='/' element={<Landing/>}/>
         <Route path='/favorites' element={<Favoritos/>}/>
         <Route path='/detail/:name' element={<Detail/>}/>

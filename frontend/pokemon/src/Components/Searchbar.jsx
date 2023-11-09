@@ -9,7 +9,7 @@ function Searchbar(props){
     }
     return (
         <div>
-            <button onClick={()=>props.search(newname)}>Add</button>
+            <button onClick={()=>props.search(newname)} type="button" class="btn btn-info">Add</button>
             <input type="text" name="busqueda" onChange={handlerchangename}/>
         </div>
     )

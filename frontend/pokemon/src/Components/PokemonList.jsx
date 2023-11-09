@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Pokecar from "./Pokecar"
+import Pagination from "./Pagination"
 function PokemonList(props){
     // const [lista,setLista] = useState([])
     // const [pokemons,setPokemons] = useState({
@@ -35,25 +36,38 @@ function PokemonList(props){
     // },[pokemons.count])
     
     // console.log(pokemons.lista)
-    useEffect(()=>{
-        props.showpokemons()
-    },[])
+    const [pokemonqt,setPokemonqt] = useState(5)
+    const [page,setPage] = useState(3)
+    const finalidx = page*pokemonqt
+    const initidx = finalidx - pokemonqt
     
+
+    const all_pokes =()=> props.showpokemons()
+    const group_pokes = props.pokemonlist.slice(initidx,finalidx)
+    
+    useEffect(()=>{
+        all_pokes()
+         
+    },[])
+    console.log(page)
     return (
-        <div>
+        <div className="container-pokemons">
             {props.loading===true?(<h2>Loading...</h2>):(
-                props.pokemonlist.map((pokemon)=>{
+                group_pokes.map((pokemon)=>{
                     return(
-                        <Pokecar
-                            name = {pokemon.name}
-                            height = {pokemon.height}             
-                            weight = {pokemon.weight}
-                            type = {pokemon.types[0].type.name}
-                            imagen = {pokemon.sprites.front_default}
-                        />
+                        <div className="card-pokemons">
+                            <Pokecar
+                                name = {pokemon.name}
+                                height = {pokemon.height}             
+                                weight = {pokemon.weight}
+                                type = {pokemon.types[0].type.name}
+                                imagen = {pokemon.sprites.front_default}
+                            />
+                        </div>
                     )
                 })
             )}
+            <Pagination pokemonqt={pokemonqt} page={page} setPage={setPage} pokemonlist={props.pokemonlist}/>
         </div>
     )
 
