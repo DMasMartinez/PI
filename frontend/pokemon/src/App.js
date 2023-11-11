@@ -65,6 +65,11 @@ function App() {
 ///////////////////////////
   const [pokemonlist,setPokemonlist] = useState([])
   const [loading,setLoading] = useState(true)
+  const [pokemonqt,setPokemonqt] = useState(6)
+  const [page,setPage] = useState(6)
+  const finalidx = page*pokemonqt
+  const initidx = finalidx - pokemonqt
+  
   const showpokemons = async() =>{
     const res = await fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40")
     const data = await res.json()
@@ -75,7 +80,7 @@ function App() {
         return data
     })
     const resultado = await Promise.all(pokemones)
-    setPokemonlist([...pokemonlist,...resultado])
+    setPokemonlist([...resultado.slice(initidx,finalidx)])
     setLoading(false)
   }
 
@@ -119,7 +124,7 @@ function App() {
       <Pokecard users={users}/> */}
       {location.pathname!=='/'&&location.pathname!=='/search'&&<Showsearch search={search} users={users} tipos={poketype} alfabetic={orderalfabetic} noalfabetic={orderopositealfabetic} orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} loading = {loading}/>}
       <Routes>
-        <Route path='/home' element={<Home orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} setPokemonlist={setPokemonlist} loading = {loading}/>}/>
+        <Route path='/home' element={<Home orderhome = {orderalfabetichome} noorderhome = {orderopositealfabetichome} tipohome = {poketypehome} showpokemons={showpokemons} pokemonlist={pokemonlist} setPokemonlist={setPokemonlist} loading = {loading} setPage={setPage} setPokemonqt={setPokemonqt} page={page} pokemonqt={pokemonqt}/>}/>
         <Route path='/' element={<Landing/>}/>
         <Route path='/favorites' element={<Favoritos/>}/>
         <Route path='/detail/:name' element={<Detail/>}/>

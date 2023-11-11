@@ -15,7 +15,7 @@ function Home(props){
                 <span>create</span>
             </Link> */}
             {/* <Ordenar2 tipos = {props.tipohome} alfabetic={props.orderhome} noalfabetic={props.noorderhome} pokemonlist={props.pokemonlist}/> */}
-            <PokemonList showpokemons = {props.showpokemons} pokemonlist = {props.pokemonlist} loading = {props.loading} setPokemonlist={props.setPokemonlist}/>
+            <PokemonList showpokemons = {props.showpokemons} pokemonlist = {props.pokemonlist} loading = {props.loading} setPokemonlist={props.setPokemonlist} setPokemonqt={props.setPokemonqt} setPage={props.setPage} page={props.page} pokemonqt={props.pokemonqt}/>
         </div>
     )
 }

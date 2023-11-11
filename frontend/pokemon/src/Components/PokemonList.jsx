@@ -36,25 +36,21 @@ function PokemonList(props){
     // },[pokemons.count])
     
     // console.log(pokemons.lista)
-    const [pokemonqt,setPokemonqt] = useState(6)
-    const [page,setPage] = useState(3)
-    const finalidx = page*pokemonqt
-    const initidx = finalidx - pokemonqt
+   
     
 
     const all_pokes =()=> props.showpokemons()
-    const group_pokes = props.pokemonlist.slice(initidx,finalidx)
+    // const group_pokes = props.pokemonlist.slice(initidx,finalidx)
     
     useEffect(()=>{
         all_pokes()
          
-    },[])
-    console.log(page)
+    },[props.page])
     return (
         <div class="container text-center">
             <div class="row">
                 {props.loading===true?(<h2>Loading...</h2>):(
-                    group_pokes.map((pokemon)=>{
+                    props.pokemonlist.map((pokemon)=>{
                         return(
                             <div class="col-md-6 md-6">
                                 <Pokecar
@@ -69,7 +65,7 @@ function PokemonList(props){
                     })
                 )}
             </div>
-            <Pagination pokemonqt={pokemonqt} page={page} setPage={setPage} pokemonlist={props.pokemonlist}/>
+            <Pagination setPage={props.setPage} pokemonlist={props.pokemonlist} pokemonqt = {props.pokemonqt} page={props.page}/>
         </div>
     )
 

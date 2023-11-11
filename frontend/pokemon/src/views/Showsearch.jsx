@@ -9,6 +9,7 @@ function Showsearch(props){
     return(
         <div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            {location.pathname!=='/home'&&location.pathname!=='/favorites'?(<Ordenar tipos = {props.tipos} alfabetic={props.alfabetic} noalfabetic={props.noalfabetic}/>):(<Ordenar2 tipos = {props.tipohome} alfabetic={props.orderhome} noalfabetic={props.noorderhome} pokemonlist={props.pokemonlist}/>)}
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                   <Link to='/'>
