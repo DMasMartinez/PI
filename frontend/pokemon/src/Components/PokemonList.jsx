@@ -36,7 +36,7 @@ function PokemonList(props){
     // },[pokemons.count])
     
     // console.log(pokemons.lista)
-    const [pokemonqt,setPokemonqt] = useState(5)
+    const [pokemonqt,setPokemonqt] = useState(6)
     const [page,setPage] = useState(3)
     const finalidx = page*pokemonqt
     const initidx = finalidx - pokemonqt
@@ -51,22 +51,24 @@ function PokemonList(props){
     },[])
     console.log(page)
     return (
-        <div className="container-pokemons">
-            {props.loading===true?(<h2>Loading...</h2>):(
-                group_pokes.map((pokemon)=>{
-                    return(
-                        <div className="card-pokemons">
-                            <Pokecar
-                                name = {pokemon.name}
-                                height = {pokemon.height}             
-                                weight = {pokemon.weight}
-                                type = {pokemon.types[0].type.name}
-                                imagen = {pokemon.sprites.front_default}
-                            />
-                        </div>
-                    )
-                })
-            )}
+        <div class="container text-center">
+            <div class="row">
+                {props.loading===true?(<h2>Loading...</h2>):(
+                    group_pokes.map((pokemon)=>{
+                        return(
+                            <div class="col-md-6 md-6">
+                                <Pokecar
+                                    name = {pokemon.name}
+                                    height = {pokemon.height}             
+                                    weight = {pokemon.weight}
+                                    type = {pokemon.types[0].type.name}
+                                    imagen = {pokemon.sprites.other.dream_world.front_default}
+                                />
+                            </div>
+                        ) 
+                    })
+                )}
+            </div>
             <Pagination pokemonqt={pokemonqt} page={page} setPage={setPage} pokemonlist={props.pokemonlist}/>
         </div>
     )
@@ -76,3 +78,22 @@ function PokemonList(props){
 
 
 export default PokemonList
+
+{/* <div className="container-pokemons">
+            {props.loading===true?(<h2>Loading...</h2>):(
+                group_pokes.map((pokemon)=>{
+                    return(
+                        <div className="card-pokemons">
+                            <Pokecar
+                                name = {pokemon.name}
+                                height = {pokemon.height}             
+                                weight = {pokemon.weight}
+                                type = {pokemon.types[0].type.name}
+                                imagen = {pokemon.sprites.other.dream_world.front_default}
+                            />
+                        </div>
+                    )
+                })
+            )}
+            <Pagination pokemonqt={pokemonqt} page={page} setPage={setPage} pokemonlist={props.pokemonlist}/>
+        </div> */}

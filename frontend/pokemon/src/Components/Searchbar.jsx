@@ -9,8 +9,8 @@ function Searchbar(props){
     }
     return (
         <div>
-            <button onClick={()=>props.search(newname)} type="button" class="btn btn-info">Add</button>
-            <input type="text" name="busqueda" onChange={handlerchangename}/>
+            <button onClick={()=>props.search(newname)} class="btn btn-outline-success" type="submit">Add</button>
+            <input name="busqueda" onChange={handlerchangename} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         </div>
     )
 }

@@ -14,11 +14,26 @@ function Pagination(props){
     }
 
     return(
-        <div className="button-general">
-            <button onClick={()=>prev_page()} type="button" class="btn btn-info btn-lg">prev</button>
-            <button onClick={()=>next_page()} type="button" class="btn btn-info btn-lg">next</button>
-        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <button onClick={()=>prev_page()} type="button" class="btn btn-info btn-lg" aria-hidden="true">prev</button>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <button onClick={()=>next_page()} type="button" class="btn btn-info btn-lg" aria-hidden="true">next</button>
+                    </a>
+                </li>
+            </ul>
+      </nav>
     )
 } 
 
 export default Pagination
+
+{/* <div className="button-general">
+            <button onClick={()=>prev_page()} type="button" class="btn btn-info btn-lg">prev</button>
+            <button onClick={()=>next_page()} type="button" class="btn btn-info btn-lg">next</button>
+        </div> */}

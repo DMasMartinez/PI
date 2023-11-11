@@ -5,7 +5,7 @@ import PokemonList from "../Components/PokemonList"
 function Home(props){
     return(
         <div>
-            <Link to='/search'>
+            {/* <Link to='/search'>
                 <span>Search</span>
             </Link>
             <Link to='/favorites'>
@@ -13,7 +13,7 @@ function Home(props){
             </Link>
             <Link to='/create'>
                 <span>create</span>
-            </Link>
+            </Link> */}
             {/* <Ordenar2 tipos = {props.tipohome} alfabetic={props.orderhome} noalfabetic={props.noorderhome} pokemonlist={props.pokemonlist}/> */}
             <PokemonList showpokemons = {props.showpokemons} pokemonlist = {props.pokemonlist} loading = {props.loading} setPokemonlist={props.setPokemonlist}/>
         </div>
