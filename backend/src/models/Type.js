@@ -15,5 +15,6 @@ module.exports = (database) =>{
             unique:true,
             allowNull:false
         },
-    })
+    },
+    )
 }

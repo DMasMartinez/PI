@@ -8,40 +8,39 @@ module.exports = (database) =>{
             primaryKey:true,
             autoIncrement:true,
         },
-        Nombre:{
+        name:{
             type:DataTypes.STRING,
-            allowNull:false
+            allowNull: false
+            
             
         },
-        Imagen:{
+        image:{
             type:DataTypes.STRING,
-            allowNull: false,
-         
-        },
-        Vida:{
-            type:DataTypes.INTEGER,
-            allowNull: false,
             
         },
-        Ataque:{
+        health:{
             type:DataTypes.INTEGER,
-            allowNull: false,
             
         },
-        Defensa:{
+        atack:{
             type:DataTypes.INTEGER,
-            allowNull: false,
+            
             
         },
-        Velocidad:{
+        defense:{
+            type:DataTypes.INTEGER,
+            
+        },
+        velocity:{
             type:DataTypes.INTEGER
         },
-        Altura:{
+        height:{
             type:DataTypes.INTEGER
         },
-        Peso:{
+        weight:{
             type:DataTypes.INTEGER
         },
     },
+    
     )
 }

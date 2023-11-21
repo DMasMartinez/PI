@@ -1,8 +1,8 @@
 
 const {Pokemon} = require('../../../../db')
 
-const postpokemon =async ({ id, Nombre, Imagen, Vida, Ataque, Defensa, Velocidad, Altura, Peso}) =>{
-    const newpokemon = await Pokemon.create({ id, Nombre, Imagen, Vida, Ataque, Defensa, Velocidad, Altura, Peso})
+const postpokemon =async ({ id, name, image, health, atack, defense, velocity, height, weight}) =>{
+    const newpokemon = await Pokemon.create({ id, name, image, health, atack, defense, velocity, height, weight})
     return newpokemon
 }
 module.exports = postpokemon
