@@ -10,7 +10,7 @@ module.exports = (database) =>{
             primaryKey:true,
             allowNull:false
         },
-        Nombre:{
+        type:{
             type:DataTypes.INTEGER,
             unique:true,
             allowNull:false

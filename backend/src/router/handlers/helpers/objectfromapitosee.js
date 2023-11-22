@@ -1,12 +1,8 @@
 
 
 const objectformapitosee = (data) =>{
-    const poketypes = data.dataValues.types
-    poketypes.forEach(type => {
-        return type.type.name
-    });
-        
     
+    const poketypes = data.types.map(type => type.type.name);
     const newobj ={
         "name":data.name,
         "height":data.height,

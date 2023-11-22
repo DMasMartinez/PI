@@ -1,11 +1,20 @@
-const { Pokemon } = require('../../../../db')
+const { Pokemon, Type } = require('../../../../db')
 const objectformapitosee = require('../helpers/objectfromapitosee')
 const findbyquery = async(query)=>{
-    const show = await Pokemon.findAll({
-        where : query,
+    const show = await Pokemon.findOne({where : query,
+        include:{
+            model:Type,
+            attributes:["type"],
+            through:{
+                attributes:[],
+            },
+        }
     })
-    if (show!==null&&show.length>0){
-        return show[0].dataValues
+    if (show!==null){
+        const poketype = show.dataValues.Types.map((type)=>type.type)
+        show.dataValues.types = poketype
+
+        return show.dataValues
     }
     const pokemonbyname = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.name}`)
     const data = await pokemonbyname.json()
