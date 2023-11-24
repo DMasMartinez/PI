@@ -14,8 +14,8 @@ function Pokecard(props){
                             name = {user.name}
                             weight = {user.weight}
                             height = {user.height}
-                            type = {user.types[0].type.name}
-                            imagen = {user.sprites.front_default}
+                            type = {user.type[0]}
+                            imagen = {user.image}
                         />
                     </div>
                 )
@@ -25,3 +25,6 @@ function Pokecard(props){
 }
 
 export default Pokecard
+
+// s[0].type.name  sacado de type para poder usar mi back
+// sprites.front_default

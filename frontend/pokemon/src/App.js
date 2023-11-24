@@ -22,7 +22,7 @@ function App() {
   const location = useLocation()
   const navigate = useNavigate()
   function search(name){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    fetch(`http://localhost:3001/pokemons/?name=${name}`)
       .then(res=>res.json())
       .then(data=>setUsers([...users,data]))
     navigate('/search')
