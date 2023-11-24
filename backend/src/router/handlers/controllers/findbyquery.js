@@ -1,18 +1,10 @@
 const { Pokemon, Type } = require('../../../../db')
 const objectformapitosee = require('../helpers/objectfromapitosee')
 const findbyquery = async(query)=>{
-    const show = await Pokemon.findOne({where : query,
-        include:{
-            model:Type,
-            attributes:["type"],
-            through:{
-                attributes:[],
-            },
-        }
-    })
+    const show = await Pokemon.findOne({where : query})
     if (show!==null){
-        const poketype = show.dataValues.Types.map((type)=>type.type)
-        show.dataValues.types = poketype
+        // const poketype = show.dataValues.Types.map((type)=>type.type)
+        // show.dataValues.types = poketype
 
         return show.dataValues
     }

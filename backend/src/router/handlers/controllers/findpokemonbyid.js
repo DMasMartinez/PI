@@ -2,18 +2,10 @@
 const {Pokemon,Type} = require('../../../../db')
 const objectfromapitosee = require('../helpers/objectfromapitosee')
 const findpokemonbyid = async(id) =>{
-    const poke = await Pokemon.findByPk(id,{
-        include:{
-            model:Type,
-            attributes:["type"],
-            through:{
-                attributes:[]
-            }
-        }
-    })
+    const poke = await Pokemon.findByPk(id)
     if (poke!==null){
-        const poketype = poke.dataValues.Types.forEach(element => {element.type});
-        poke.dataValues.types = poketype
+        // const poketype = poke.dataValues.Types.forEach(element => {element.type});
+        // poke.dataValues.types = poketype
         return poke.dataValues
     }
     const pokemonbyid = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)

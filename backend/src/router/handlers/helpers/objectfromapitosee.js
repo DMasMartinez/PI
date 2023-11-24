@@ -2,7 +2,7 @@
 
 const objectformapitosee = (data) =>{
     
-    const poketypes = data.types.map(type => type.type.name);
+    // const poketypes = data.types.map(type => type.type.name);
     const newobj ={
         "name":data.name,
         "height":data.height,
@@ -12,7 +12,7 @@ const objectformapitosee = (data) =>{
         "atack":data.stats[1].base_stat,
         "defense":data.stats[2].base_stat,
         "image":data.sprites.other.dream_world.front_default,
-        "types":poketypes
+        "type":data.types.map((type)=>type.type.name)
     }
     return newobj
     

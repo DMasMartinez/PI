@@ -3,7 +3,7 @@ const database = require('../../db')
 
 module.exports = (database) =>{
     database.define("Pokemon",{
-        id:{
+        ide:{
             type:DataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
@@ -39,6 +39,11 @@ module.exports = (database) =>{
         },
         weight:{
             type:DataTypes.INTEGER
+        },
+        type:{
+            type:DataTypes.ARRAY(DataTypes.STRING),
+            unique:true,
+            allowNull:false
         },
     },
     
